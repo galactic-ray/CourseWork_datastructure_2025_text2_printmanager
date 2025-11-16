@@ -14,13 +14,13 @@ set(CMAKE_AUTOUIC ON)
 
 # 源文件
 set(SOURCES
-    main_gui.cpp
-    mainwindow.cpp
+    src/main_gui.cpp
+    src/mainwindow.cpp
 )
 
 set(HEADERS
-    mainwindow.h
-    printmanager.h
+    src/mainwindow.h
+    src/printmanager.h
 )
 
 # 创建可执行文件
@@ -30,5 +30,10 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 target_link_libraries(${PROJECT_NAME}
     Qt${QT_VERSION_MAJOR}::Core
     Qt${QT_VERSION_MAJOR}::Widgets
+)
+
+# 设置工作目录为项目根目录（用于运行时访问data目录）
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
 )
 

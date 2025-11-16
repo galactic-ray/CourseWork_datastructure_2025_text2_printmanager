@@ -7,10 +7,10 @@ TARGET = PrintManagerGUI
 TEMPLATE = app
 
 SOURCES += \
-    main_gui.cpp \
-    mainwindow.cpp
+    src/main_gui.cpp \
+    src/mainwindow.cpp
 
 HEADERS += \
-    mainwindow.h \
-    printmanager.h
+    src/mainwindow.h \
+    src/printmanager.h
 

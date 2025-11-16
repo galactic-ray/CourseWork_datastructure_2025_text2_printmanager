@@ -55,9 +55,9 @@ struct PrintManager {
     int remainSec = 0;       // 当前任务剩余"整秒数"（向上取整）
 
     // —— 文件名（可按需修改）
-    std::string fileWaiting = "waiting.csv";
-    std::string fileRunning = "running.csv";
-    std::string fileDone    = "done.csv";
+    std::string fileWaiting = "data/waiting.csv";
+    std::string fileRunning = "data/running.csv";
+    std::string fileDone    = "data/done.csv";
 
     // —— 工具：格式化时间（把秒格式化为 mm:ss）
     static std::string fmt(int sec) {

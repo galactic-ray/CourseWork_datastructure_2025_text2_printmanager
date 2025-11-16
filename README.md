@@ -61,23 +61,34 @@ sudo apt-get install qt6-base-dev qt6-base-dev-tools
 
 ## 编译方法
 
-### 方法1：使用CMake（推荐）
+### 方法1：使用构建脚本（推荐）
 
 ```bash
-mkdir build
+./build.sh
+# 然后运行
+./PrintManagerGUI  # 或 ./build/PrintManagerGUI
+```
+
+### 方法2：使用CMake
+
+```bash
+mkdir -p build
 cd build
 cmake ..
 make
-./PrintManagerGUI
+cd ..
+./build/PrintManagerGUI
 ```
 
-### 方法2：使用qmake
+### 方法3：使用qmake
 
 ```bash
 qmake PrintManager.pro
 make
 ./PrintManagerGUI
 ```
+
+**注意**：程序需要在项目根目录运行，以确保能正确访问 `data/` 目录。
 
 ## 使用方法
 
@@ -88,14 +99,35 @@ make
 5. **运行至完成**：点击"运行至完成"按钮，程序将自动运行直到所有任务完成
 6. **取消任务**：输入任务ID，点击"取消任务"来取消等待中的任务
 
+## 项目结构
+
+```
+project/
+├── src/                    # 源代码目录
+│   ├── main_gui.cpp       # 程序入口
+│   ├── mainwindow.cpp     # Qt GUI主窗口实现
+│   ├── mainwindow.h       # Qt GUI主窗口头文件
+│   └── printmanager.h     # 核心逻辑类（PrintManager和PrintJob）
+├── data/                   # 数据文件目录
+│   ├── done.csv          # 已完成任务数据
+│   ├── running.csv       # 正在打印任务数据
+│   └── waiting.csv       # 等待队列数据
+├── build/                  # 编译输出目录（自动生成）
+├── CMakeLists.txt         # CMake构建配置
+├── PrintManager.pro       # qmake项目文件
+├── build.sh               # 自动构建脚本
+├── README.md              # 本文件
+└── .gitignore            # Git忽略文件
+```
+
 ## 文件说明
 
-- `printmanager.h` - 核心逻辑类（PrintManager和PrintJob）
-- `mainwindow.h/cpp` - Qt GUI主窗口实现
-- `main_gui.cpp` - 程序入口
+- `src/printmanager.h` - 核心逻辑类（PrintManager和PrintJob）
+- `src/mainwindow.h/cpp` - Qt GUI主窗口实现
+- `src/main_gui.cpp` - 程序入口
 - `CMakeLists.txt` - CMake构建配置
 - `PrintManager.pro` - qmake项目文件
-- `2.cpp` - 原始命令行版本（保留）
+- `data/*.csv` - 数据持久化文件（自动生成）
 
 ## 界面布局
 

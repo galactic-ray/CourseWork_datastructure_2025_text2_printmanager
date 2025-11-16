@@ -1,12 +1,33 @@
-*
-!.gitignore
-!build.sh
-!CMakeLists.txt
-!main_gui.cpp
-!mainwindow.cpp
-!mainwindow.h
-!moc_mainwindow.cpp
-!moc_predefs.h
-!printmanager.h
-!PrintManager.pro
-!README.md
+# 编译输出
+build/
+*.o
+*.a
+*.so
+*.dylib
+*.exe
+PrintManagerGUI
+Makefile
+*.pro.user
+*.pro.user.*
+
+# Qt相关
+moc_*.cpp
+moc_*.h
+ui_*.h
+qrc_*.cpp
+*.qmlc
+*.jsc
+
+# IDE相关
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 数据文件（可选，如果不想提交CSV文件）
+data/*.csv

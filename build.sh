@@ -4,6 +4,13 @@
 
 echo "=== 打印机管理器GUI构建脚本 ==="
 
+# 确保在项目根目录
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR"
+
+# 确保data目录存在
+mkdir -p data
+
 # 检查Qt是否安装
 if command -v qmake &> /dev/null; then
     echo "使用qmake构建..."
@@ -11,7 +18,9 @@ if command -v qmake &> /dev/null; then
     if [ $? -eq 0 ]; then
         make
         if [ $? -eq 0 ]; then
-            echo "构建成功！运行 ./PrintManagerGUI 启动程序"
+            echo "构建成功！"
+            echo "运行方式: ./PrintManagerGUI"
+            echo "注意: 请在项目根目录运行程序，以确保能访问 data/ 目录"
         else
             echo "构建失败！"
             exit 1
@@ -28,7 +37,10 @@ elif command -v cmake &> /dev/null; then
     if [ $? -eq 0 ]; then
         make
         if [ $? -eq 0 ]; then
-            echo "构建成功！运行 ./build/PrintManagerGUI 启动程序"
+            cd ..
+            echo "构建成功！"
+            echo "运行方式: ./build/PrintManagerGUI"
+            echo "注意: 请在项目根目录运行程序，以确保能访问 data/ 目录"
         else
             echo "构建失败！"
             exit 1
